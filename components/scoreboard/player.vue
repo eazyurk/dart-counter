@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component({})
 export default class Player extends Vue {
-  @Prop()
-  playerName: string;
+  @Prop({ required: true })
+  playerName: string = '';
 }
 </script>

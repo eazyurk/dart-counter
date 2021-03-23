@@ -29,22 +29,24 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({})
 export default class Input extends Vue {
-  scoreInput = [
+  private scoreInput: Array<Array<number | string>> = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
     [-1, 0, '+']
-  ];
+  ]
 
-  score = 0;
+  private score: number = 0
 
-  addToScore (newScore) {
-    const scoreAppend = `${this.score}${newScore}`
-
-    if (newScore === '+') {
+  private addToScore (newScoreInput: string) {
+    if (newScoreInput === '+') {
       this.submitScore()
+
       return
     }
+
+    const newScore = parseInt(newScoreInput)
+    const scoreAppend = parseInt(`${this.score}${newScore}`)
 
     if (scoreAppend > 180 || newScore < 0) {
       return
@@ -58,7 +60,7 @@ export default class Input extends Vue {
     this.score = newScore
   }
 
-  submitScore () {
+  private submitScore (): void {
     this.score = 0
   }
 }
